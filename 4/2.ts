@@ -65,14 +65,14 @@ class Board {
 }
 
 const boards = input.slice(1).map((boardStr) => new Board(boardStr));
-const wonBoards = [];
+const scores = [];
 
 for (const callNum of callNumbers) {
     for (const board of boards) {
         if (board.won) continue;
         const score = board.markNumber(callNum);
-        if (score !== undefined) wonBoards.push(score);
+        if (score !== undefined) scores.push(score);
     }
 }
 
-console.log(wonBoards[wonBoards.length - 1]);
+console.log(scores[scores.length - 1]);
