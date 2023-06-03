@@ -38,7 +38,7 @@ function* pointsOnSegment(s: Segment) {
     const [dx, dy] = [Math.sign(ex - sx), Math.sign(ey - sy)];
     let [x, y] = [sx, sy];
     while (x != ex + dx || y != ey + dy) {
-        yield [x, y];
+        yield { x, y } as Point;
         x += dx;
         y += dy;
     }
@@ -46,7 +46,7 @@ function* pointsOnSegment(s: Segment) {
 
 let overLaps = 0;
 for (const segment of segments) {
-    for (const [x, y] of pointsOnSegment(segment)) {
+    for (const { x, y } of pointsOnSegment(segment)) {
         field[y][x] += 1;
         if (field[y][x] === 2) overLaps++;
     }
