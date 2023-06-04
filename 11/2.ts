@@ -1,7 +1,6 @@
 import { readFileSync } from "fs";
 
 const input = readFileSync("11/in.txt").toString().split("\n");
-const STEPS = 300; // this is just some number that is greater than both the test and input target values
 const DIRS = [
     [0, 1],
     [1, 1],
@@ -16,7 +15,9 @@ const DIRS = [
 let energyLevels = input.map((row) => row.split("").map((c) => parseInt(c)));
 
 let flashes = 0;
-for (let i = 0; i < STEPS; i++) {
+let step = 0;
+while (true) {
+    step++;
     energyLevels = energyLevels.map((row) => row.map((c) => c + 1));
     const seenFlashes = new Set();
     for (let y = 0; y < energyLevels.length; y++) {
@@ -44,7 +45,7 @@ for (let i = 0; i < STEPS; i++) {
         }
     }
     if (seenFlashes.size === 100) {
-        console.log(i + 1);
+        console.log(step);
         break;
     }
 }
